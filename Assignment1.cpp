@@ -9,7 +9,7 @@ int main(){
 	for(int i = 0; i<n;i++){
 		cin>>arr[i];
 	}
-	cout<<"---------Print Array---------"<<endl;
+//	cout<<"---------Print Array---------"<<endl;
 	for(int i = 0; i<n;i++){
 		cout<<*arr+i<<endl;
 	}
@@ -27,7 +27,7 @@ int main(){
 	for(int i = 0; i<n;i++){
 		cin>>arr[i];
 		if(arr[i]>max){
-			max = arr[i;
+			max = arr[i];
 		}
 	}
 		cout<<"The Largest element is = "<<max;
@@ -38,10 +38,9 @@ int main(){
 /*#include<iostream>
 using namespace std;
 int main(){
-	int n,max;
-	cout<<"Print the Size of Array = ";
+	int n,max=0;
+	cout<<"Enter the Size of Array = ";
 	cin>>n;
-	max=0;
 	int* arr = new int[n];
 	for(int i = 0; i<n;i++){
 		cin>>arr[i];
@@ -57,16 +56,13 @@ int main(){
 /*#include<iostream>
 using namespace std;
 int main(){
-	int n,sum;
+	int n,sum=0;
 	cout<<"Print the Size of Array = ";
 	cin>>n;
-	sum=0;
 	int arr[n];
 	for(int i = 0; i<n;i++){
 		cin>>arr[i];
-	}
-	for(int i =0;i<n;i++){
-		sum = arr[i]+sum;	
+		sum = arr[i]+sum;
 	}
 		cout<<"The Sum is = "<<sum;
 	
@@ -76,21 +72,17 @@ int main(){
 /*#include<iostream>
 using namespace std;
 int main(){
-	int n,sum;
+	int n,sum=0;
 	cout<<"Print the Size of Array = ";
 	cin>>n;
-	sum=0;
 	int* arr = new int[n];
 	for(int i = 0; i<n;i++){
 		cin>>arr[i];
-	}
-	for(int i =0;i<n;i++){
-		sum = *(arr)+sum;	
+		sum = *(arr+i)+sum;	
 	}
 		cout<<"The Sum is = "<<sum;
-	
 	return 0;
-}*/
+}
 //5.Sum and average 
 /*#include<iostream>
 using namespace std;
@@ -113,43 +105,39 @@ int main(){
 	return 0;
 }*/
 //6.Perform (2D array) matrix multiplication using pointer.
-#include<iostream>
+
+#include <iostream>
 using namespace std;
-int main(){
-	int mat1[3][3], mat2[3][3], result[3][3];
-  	cout << "\nEnter elements for the first matrix:\n";
-    for (int i = 0; i < 3; ++i) {
-        for (int j = 0; j < 3; ++j) {
-            cout << "Enter element [" << i + 1 << "][" << j + 1 << "]: ";
-            cin >> *(*(mat1 + i) + j);
-        }
+int main() {
+    int rows1, cols1, rows2, cols2;
+    cout << "Enter rows and columns for the first matrix: ";
+    cin >> rows1 >> cols1;
+    cout << "Enter rows and columns for the second matrix: ";
+    cin >> rows2 >> cols2;
+    if (cols1 != rows2) {
+        cout << "Matrix multiplication is not possible with these dimensions.";
+        return 1;
     }
-
+    int mat1[rows1][cols1], mat2[rows2][cols2], result[rows1][cols2] = {};
+    cout << "\nEnter elements for the first matrix:\n";
+    for (int i = 0; i < rows1; ++i)
+        for (int j = 0; j < cols1; ++j)
+            cin >> mat1[i][j];
     cout << "\nEnter elements for the second matrix:\n";
-    for (int i = 0; i < 3; ++i) {
-        for (int j = 0; j < 3; ++j) {
-            cout << "Enter element [" << i + 1 << "][" << j + 1 << "]: ";
-            cin >> *(*(mat2 + i) + j);
-        }
-    }
-
-    for (int i = 0; i < 3; ++i) {
-        for (int j = 0; j < 3; ++j) {
-            *(*(result + i) + j) = 0;
-            for (int k = 0; k < 3; ++k) {
-                *(*(result + i) + j) += *(*(mat1 + i) + k) * *(*(mat2 + k) + j);
-            }
-        }
-    }
-
-    cout << "\nResultant Matrix after multiplication:\n";
-    for (int i = 0; i < 3; ++i) {
-        for (int j = 0; j < 3; ++j) {
-            std::cout << *(*(result + i) + j) << " ";
-        }
+    for (int i = 0; i < rows2; ++i)
+        for (int j = 0; j < cols2; ++j)
+            cin >> mat2[i][j];
+    for (int i = 0; i < rows1; ++i)
+        for (int j = 0; j < cols2; ++j)
+            for (int k = 0; k < cols1; ++k)
+                result[i][j] += mat1[i][k] * mat2[k][j];
+    cout << "\nResultant Matrix:\n";
+    for (int i = 0; i < rows1; ++i) {
+        for (int j = 0; j < cols2; ++j)
+            cout << result[i][j] << " ";
         cout << "\n";
     }
-	return 0;
+    return 0;
 }
 
 
